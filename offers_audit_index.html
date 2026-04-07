@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why My Offers Aren't Selling — VD Advisory Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:      #C4500A;
+    --orange-lt:   #E8956A;
+    --green:       #283618;
+    --green-mid:   #606C38;
+    --cream:       #FAF7F2;
+    --stone:       #E8E0D4;
+    --stone-lt:    #F5F0E8;
+    --ink:         #1C1915;
+    --ink-mid:     #3D3530;
+    --ink-light:   #6B5F57;
+    --white:       #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    height: 4px;
+    background: var(--orange);
+    width: 100%;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--stone);
+  }
+
+  .wordmark {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .wordmark span {
+    color: var(--orange);
+  }
+
+  .header-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .header-link:hover { color: var(--orange); }
+
+  /* ── SCREENS ── */
+  .screen {
+    display: none;
+    min-height: calc(100vh - 57px);
+  }
+  .screen.active { display: block; }
+
+  /* ── INTRO SCREEN ── */
+  .intro-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 32px 100px;
+    text-align: center;
+  }
+
+  .intro-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .intro-eyebrow::before,
+  .intro-eyebrow::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--orange);
+    opacity: 0.5;
+  }
+
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .intro-title em {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .intro-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--orange);
+    margin: 28px auto;
+  }
+
+  .intro-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink-mid);
+    margin-bottom: 16px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intro-note {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover {
+    background: #A84208;
+    transform: translateY(-1px);
+  }
+
+  .intro-reassure {
+    margin-top: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── QUIZ SCREEN ── */
+  .quiz-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  /* Progress */
+  .progress-bar-track {
+    width: 100%;
+    height: 3px;
+    background: var(--stone);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--orange);
+    transition: width 0.4s ease;
+  }
+
+  .progress-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-align: right;
+    margin-top: 8px;
+  }
+
+  /* Question */
+  .question-block {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .question-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .q-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .q-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  /* Options */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--white);
+    border: 1px solid var(--stone);
+    padding: 20px 24px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    width: 100%;
+  }
+
+  .option-btn:hover {
+    border-color: var(--orange);
+    background: var(--stone-lt);
+    transform: translateX(4px);
+  }
+
+  .option-btn.selected {
+    border-color: var(--orange);
+    background: var(--stone-lt);
+    border-left: 3px solid var(--orange);
+  }
+
+  .option-letter {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    min-width: 20px;
+    padding-top: 2px;
+  }
+
+  .option-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* Nav */
+  .quiz-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  .btn-back {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+  }
+  .btn-back:hover { color: var(--ink); }
+  .btn-back:disabled { opacity: 0; pointer-events: none; }
+
+  .btn-next {
+    background: var(--ink);
+    color: var(--white);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-next:hover {
+    background: var(--orange);
+    transform: translateY(-1px);
+  }
+  .btn-next:disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* ── RESULT SCREEN ── */
+  .result-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+  }
+
+  .result-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .result-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--orange);
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--stone);
+  }
+
+  .result-body p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  .result-signal {
+    background: var(--stone-lt);
+    border-left: 3px solid var(--orange);
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .result-signal-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+
+  .result-signal p {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+  .result-signal p:last-child { margin-bottom: 0; }
+
+  /* Offers */
+  .offers-section {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--stone);
+  }
+
+  .offers-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 560px) {
+    .offers-grid { grid-template-columns: 1fr; }
+  }
+
+  .offer-card {
+    border: 1px solid var(--stone);
+    background: var(--white);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .offer-card.primary {
+    border-top: 4px solid var(--orange);
+  }
+
+  .offer-card.secondary {
+    border-top: 4px solid var(--green);
+  }
+
+  .offer-card-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+  }
+
+  .offer-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+
+  .offer-card-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-mid);
+    margin-bottom: 16px;
+  }
+
+  .offer-card-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 24px;
+  }
+
+  .offer-card-cta {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .offer-card.primary .offer-card-cta {
+    background: var(--orange);
+    color: var(--white);
+  }
+  .offer-card.primary .offer-card-cta:hover {
+    background: #A84208;
+    transform: translateY(-1px);
+  }
+
+  .offer-card.secondary .offer-card-cta {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+  .offer-card.secondary .offer-card-cta:hover {
+    background: var(--green);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 32px 40px;
+    border-top: 1px solid var(--stone);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .footer-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: var(--orange);
+    text-decoration: none;
+  }
+  .footer-link:hover { text-decoration: underline; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .intro-wrap > * {
+    animation: fadeUp 0.5s ease both;
+  }
+  .intro-wrap > *:nth-child(1) { animation-delay: 0.05s; }
+  .intro-wrap > *:nth-child(2) { animation-delay: 0.1s; }
+  .intro-wrap > *:nth-child(3) { animation-delay: 0.15s; }
+  .intro-wrap > *:nth-child(4) { animation-delay: 0.2s; }
+  .intro-wrap > *:nth-child(5) { animation-delay: 0.25s; }
+  .intro-wrap > *:nth-child(6) { animation-delay: 0.3s; }
+  .intro-wrap > *:nth-child(7) { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<header class="site-header">
+  <div class="wordmark">VD <span>Advisory</span> Group</div>
+  <a href="https://veronicadietz.com" class="header-link">veronicadietz.com</a>
+</header>
+
+<!-- ══════════════════════ INTRO ══════════════════════ -->
+<div class="screen active" id="screen-intro">
+  <div class="intro-wrap">
+    <div class="intro-eyebrow">Offer Audit</div>
+    <h1 class="intro-title">Why My Offers<br><em>Aren't Selling</em></h1>
+    <div class="intro-rule"></div>
+    <p class="intro-sub">Your offers are not the problem. The structural pattern underneath them is. This audit identifies which one is present so you know exactly where to apply pressure.</p>
+    <p class="intro-note">Eight questions. One precise diagnosis.</p>
+    <button class="btn-primary" onclick="startQuiz()">Begin the Audit</button>
+    <p class="intro-reassure">No email required &nbsp;·&nbsp; Results appear immediately</p>
+  </div>
+</div>
+
+<!-- ══════════════════════ QUIZ ══════════════════════ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="progress-label">Question 1 of 8</div>
+
+    <div class="question-block" id="question-block">
+      <div class="q-number" id="q-number"></div>
+      <h2 class="q-text" id="q-text"></h2>
+      <p class="q-sub" id="q-sub"></p>
+      <div class="options-grid" id="options-grid"></div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn-back" id="btn-back" onclick="prevQuestion()" disabled>← Back</button>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()" disabled>Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ RESULT ══════════════════════ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap" id="result-content"></div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">VD Advisory Group &nbsp;·&nbsp; veronicadietz.com</div>
+  <a href="https://veronicadietz.com" class="footer-link">Book a Direction Session →</a>
+</footer>
+
+<script>
+// ── QUESTIONS ────────────────────────────────────────────────────────────────
+const questions = [
+  {
+    text: "When you describe your offer to someone, what happens?",
+    sub: "Think about the most recent time you explained it.",
+    options: [
+      { text: "They understand it but do not buy.", value: "A" },
+      { text: "They seem confused about what it actually does.", value: "B" },
+      { text: "They like it but say it is not the right time or they cannot afford it.", value: "C" },
+      { text: "They engage but want a lot of reassurance before moving forward.", value: "D" }
+    ]
+  },
+  {
+    text: "Where do most of your leads come from?",
+    sub: "Be honest about the primary channel.",
+    options: [
+      { text: "Referrals from people who already know my work.", value: "A" },
+      { text: "Content or visibility — social, podcast, search.", value: "B" },
+      { text: "Outreach or networking I initiate.", value: "C" },
+      { text: "A mix, but nothing converts consistently.", value: "D" }
+    ]
+  },
+  {
+    text: "When someone says they cannot afford your offer, what is your read on it?",
+    sub: "Your gut, not the polite answer.",
+    options: [
+      { text: "I believe them. The price is genuinely too high for where they are.", value: "C" },
+      { text: "I am not sure. The price feels right but the hesitation feels like something else.", value: "B" },
+      { text: "They are not the right person. The offer is priced correctly for a different buyer.", value: "A" },
+      { text: "I wonder if they do not fully understand what they are getting.", value: "D" }
+    ]
+  },
+  {
+    text: "How do you feel about your current pricing?",
+    sub: "Not what you think it should be. What you actually feel.",
+    options: [
+      { text: "Confident. The price matches the transformation.", value: "A" },
+      { text: "Uncertain. I have adjusted it more than once this year.", value: "C" },
+      { text: "Low. I suspect I am undercharging but I am not sure how to justify more.", value: "B" },
+      { text: "Inconsistent. I charge different amounts to different people.", value: "C" }
+    ]
+  },
+  {
+    text: "When you look at the people who have bought your offer, what do you notice?",
+    sub: "Look for patterns, not exceptions.",
+    options: [
+      { text: "They came in warm — referrals or long-time followers who already trusted me.", value: "A" },
+      { text: "They are all over the place. No clear pattern.", value: "B" },
+      { text: "They tend to be earlier stage than I intended to serve.", value: "C" },
+      { text: "They needed more handholding than I expected post-purchase.", value: "D" }
+    ]
+  },
+  {
+    text: "How does your sales page or offer description lead?",
+    sub: "What is the first thing someone reads?",
+    options: [
+      { text: "What they get — the deliverables, the format, the timeline.", value: "D" },
+      { text: "The problem it solves — named specifically.", value: "A" },
+      { text: "My credentials or background.", value: "B" },
+      { text: "A feeling or aspiration — where they want to be.", value: "C" }
+    ]
+  },
+  {
+    text: "When you imagine your ideal buyer, what is true about them?",
+    sub: "The person who would buy without needing to be convinced.",
+    options: [
+      { text: "They already know they have this problem and are actively looking for a solution.", value: "A" },
+      { text: "They feel something is wrong but have not named it yet.", value: "D" },
+      { text: "They have tried other solutions and are frustrated.", value: "B" },
+      { text: "They are ready to invest but want proof it will work for them specifically.", value: "C" }
+    ]
+  },
+  {
+    text: "What does the sales conversation usually get stuck on?",
+    sub: "The moment things stop moving forward.",
+    options: [
+      { text: "Price or budget — it comes up almost every time.", value: "C" },
+      { text: "They need to think about it and then go quiet.", value: "B" },
+      { text: "They want to know more about process, what they will actually get.", value: "D" },
+      { text: "There is no real sales conversation — people either buy or they do not.", value: "A" }
+    ]
+  }
+];
+
+// ── RESULT DEFINITIONS ───────────────────────────────────────────────────────
+const results = {
+  A: {
+    eyebrow: "Your Offer Audit Result",
+    title: "The Offer Is Right.",
+    subtitle: "The room is wrong.",
+    body: [
+      "Your offer is well-constructed. The pricing logic holds. The people who buy it get results. The problem is not the offer.",
+      "It is that you are showing it to the wrong audience, through the wrong channel, at the wrong moment in their awareness.",
+      "This is a distribution and positioning problem, not an offer problem. The people who need what you do are not finding it because it is living in rooms where they are not yet.",
+      "The fix is not refinement. It is relocation."
+    ],
+    signals: [
+      "Referrals convert but cold traffic does not",
+      "People understand your offer but do not act on it",
+      "Your best clients came in already trusting you"
+    ]
+  },
+  B: {
+    eyebrow: "Your Offer Audit Result",
+    title: "The Framing Is Carrying the Wrong Weight.",
+    subtitle: "The language is describing features. The buyer needs to hear the problem.",
+    body: [
+      "Your offer exists. The work is real. The transformation is real. But the way it is described is optimized for what you deliver, not for the structural problem the buyer is sitting inside of.",
+      "When copy leads with deliverables and process, buyers compare. They weigh whether they can figure it out themselves, whether someone else does it cheaper, whether they really need it right now.",
+      "When copy leads with the precise name of the problem they have been unable to articulate, the decision becomes obvious. There is nothing to compare.",
+      "The offer is not broken. The framing is misaligned with how the buyer experiences the problem."
+    ],
+    signals: [
+      "People engage but need convincing",
+      "You find yourself over-explaining in sales conversations",
+      "The offer description has changed multiple times without changing the conversion rate"
+    ]
+  },
+  C: {
+    eyebrow: "Your Offer Audit Result",
+    title: "The Price Is Sitting on an Unresolved Identity Question.",
+    subtitle: "This is not a pricing problem. It is a commitment problem.",
+    body: [
+      "The hesitation you see in buyers around price is often a reflection of the hesitation you carry about the offer itself.",
+      "When pricing shifts, when different buyers get different numbers, when you find yourself discounting or softening the investment conversation, it is usually because the version of the business this offer belongs to has not been fully committed to.",
+      "Buyers read uncertainty. Not consciously. But they feel it in how you hold the price, in whether the offer sounds like a real thing or a thing you are still figuring out.",
+      "The offer needs one stabilized decision underneath it. Not a better price point. A resolved identity."
+    ],
+    signals: [
+      "You have adjusted pricing more than once this year",
+      "Budget objections come up in almost every conversation",
+      "You charge different amounts to different people for the same work"
+    ]
+  },
+  D: {
+    eyebrow: "Your Offer Audit Result",
+    title: "The Offer Is Solving a Problem the Buyer Does Not Know They Have.",
+    subtitle: "The gap is not awareness. It is language.",
+    body: [
+      "The work you do is real and the problem it solves is real. But the buyer experiences that problem as a feeling, not a named structural issue. And your offer is named for the structural issue.",
+      "This creates a gap between what they are searching for and what you are offering. They arrive looking for relief from a symptom. You are offering correction of the cause.",
+      "The offer does not need to change. The entry point does. There needs to be a bridge between the symptom they can name and the cause you can correct.",
+      "Everything after that bridge can stay exactly as it is."
+    ],
+    signals: [
+      "People need a lot of explanation before they understand what they are buying",
+      "Post-purchase, clients are often more satisfied than they expected",
+      "You attract buyers who need more handholding than the offer is designed for"
+    ]
+  }
+};
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+
+// ── SCORING ──────────────────────────────────────────────────────────────────
+function getResult() {
+  const counts = { A: 0, B: 0, C: 0, D: 0 };
+  answers.forEach(a => { if (a) counts[a]++; });
+  return Object.entries(counts).sort((x, y) => y[1] - x[1])[0][0];
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────────
+function startQuiz() {
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-quiz').classList.add('active');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const block = document.getElementById('question-block');
+  block.classList.remove('visible');
+
+  setTimeout(() => {
+    document.getElementById('q-number').textContent = `Question ${current + 1} of ${questions.length}`;
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('q-sub').textContent = q.sub;
+
+    const grid = document.getElementById('options-grid');
+    const letters = ['A', 'B', 'C', 'D'];
+    grid.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn' + (answers[current] === opt.value ? ' selected' : '');
+      btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span class="option-text">${opt.text}</span>`;
+      btn.onclick = () => selectOption(opt.value, btn);
+      grid.appendChild(btn);
+    });
+
+    const pct = (current / questions.length) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = `Question ${current + 1} of ${questions.length}`;
+
+    document.getElementById('btn-back').disabled = current === 0;
+    document.getElementById('btn-next').disabled = answers[current] === null;
+    document.getElementById('btn-next').textContent = current === questions.length - 1 ? 'See My Result →' : 'Continue →';
+
+    block.classList.add('visible');
+  }, 180);
+}
+
+function selectOption(value, el) {
+  answers[current] = value;
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQuestion() {
+  if (current < questions.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+}
+
+// ── RESULT ───────────────────────────────────────────────────────────────────
+function showResult() {
+  document.getElementById('screen-quiz').classList.remove('active');
+  document.getElementById('screen-result').classList.add('active');
+  document.getElementById('progress-fill').style.width = '100%';
+  window.scrollTo(0, 0);
+
+  const key = getResult();
+  const r = results[key];
+
+  const bodyHTML = r.body.map(p => `<p>${p}</p>`).join('');
+  const signalsHTML = r.signals.map(s => `<p>— ${s}</p>`).join('');
+
+  document.getElementById('result-content').innerHTML = `
+    <div class="result-eyebrow">${r.eyebrow}</div>
+    <h2 class="result-title">${r.title}</h2>
+    <p class="result-subtitle">${r.subtitle}</p>
+    <div class="result-body">${bodyHTML}</div>
+
+    <div class="result-signal">
+      <div class="result-signal-label">You likely recognize these signals</div>
+      ${signalsHTML}
+    </div>
+
+    <div class="offers-section">
+      <div class="offers-label">Where to go from here</div>
+      <div class="offers-grid">
+
+        <div class="offer-card secondary">
+          <div class="offer-card-label">Go deeper on your own</div>
+          <div class="offer-card-name">Why This Feels Off</div>
+          <div class="offer-card-price">$99</div>
+          <div class="offer-card-desc">A structural self-diagnostic across five pressure points. Five days of integration emails. Read the pattern, sit with it, and let the architecture become clear.</div>
+          <a href="https://veronicadietz.com" class="offer-card-cta">Get the Diagnostic</a>
+        </div>
+
+        <div class="offer-card primary">
+          <div class="offer-card-label">Resolve it live</div>
+          <div class="offer-card-name">Direction Session</div>
+          <div class="offer-card-price">60 minutes &nbsp;·&nbsp; $500</div>
+          <div class="offer-card-desc">We follow your decision chain backward until the contradiction surfaces. One stabilized decision. Everything downstream recalibrates.</div>
+          <a href="https://veronicadietz.com" class="offer-card-cta">Book a Session</a>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
